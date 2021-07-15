@@ -1,0 +1,101 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.example.nutria"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
+    implementation "androidx.core:core-ktx:$version_androidx_core"
+
+    implementation "androidx.appcompat:appcompat:$version_app_compat"
+    implementation "com.google.android.material:material:$version_google_material"
+    implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
+
+    //Nav Graph
+    implementation "androidx.navigation:navigation-fragment-ktx:$version_nav_graph"
+    implementation "androidx.navigation:navigation-ui-ktx:$version_nav_graph"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+
+    //Moshi
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+    //GSON
+    implementation "com.squareup.retrofit2:converter-gson:$version_retrofit"
+
+    //CoRoutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+
+    //OKHTTP Logging Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$version_okhttp_logging_interceptor"
+
+    // Timber for logging
+    implementation "com.jakewharton.timber:timber:$version_timber"
+
+    //dimens
+    implementation "com.intuit.sdp:sdp-android:$version_intuit_dimens"
+    implementation "com.intuit.ssp:ssp-android:$version_intuit_dimens"
+
+    // Swipe refresh layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$version_swipe_refresh"
+
+    // font
+    implementation "uk.co.chrisjenx:calligraphy:$version_calligraphyVersion"
+
+    // dependency injection
+    implementation "com.google.dagger:dagger:$version_dagger2"
+    implementation "com.google.dagger:dagger-android:$version_dagger2"
+    implementation "com.google.dagger:dagger-android-support:$version_dagger2"
+    kapt "com.google.dagger:dagger-compiler:$version_dagger2"
+    kapt "com.google.dagger:dagger-android-processor:$version_dagger2"
+}
