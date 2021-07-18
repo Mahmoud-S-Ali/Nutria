@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.nutria.BR
 import com.example.nutria.R
 import com.example.nutria.base.BaseFragment
+import com.example.nutria.data.model.api.IngredientDetailsRequest
+import com.example.nutria.data.model.api.IngredientDetailsResponse
 import com.example.nutria.data.network.ErrorHandler
 import com.example.nutria.data.network.StateCodes
 import com.example.nutria.databinding.FragmentIngredientsBinding
@@ -38,12 +41,12 @@ class IngredientsFragment : BaseFragment<FragmentIngredientsBinding, Ingredients
     override fun setupMainObservers(viewModel: IngredientsViewModel?) {
         super.setupMainObservers(viewModel)
 
-        viewModel?.ingredientsDetailsResult?.observe(this, { _ ->
+        viewModel?.ingredientsDetailsResult?.observe(this, { ingredientDetails ->
             with(viewModel) {
-                if (!validateResult(ingredientsDetailsResult.value))
+                if (!validateResult(ingredientDetails))
                     ErrorHandler.showAlertForError(StateCodes.UNPROCESSABLE_ENTITY, context)
                 else
-                    Toast.makeText(context, "Ingredients ready", Toast.LENGTH_SHORT).show()
+                    navigateToSummaryFragment(ingredientDetails)
             }
         })
     }
@@ -83,5 +86,10 @@ class IngredientsFragment : BaseFragment<FragmentIngredientsBinding, Ingredients
                     viewModel?.validateIngredientsStr(p0.toString()) == true
             }
         })
+    }
+
+    private fun navigateToSummaryFragment(ingredientsDetails: IngredientDetailsResponse) {
+        val action = IngredientsFragmentDirections.actionIngredientsFragmentToSummaryFragment(ingredientsDetails)
+        findNavController().navigate(action)
     }
 }

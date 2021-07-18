@@ -28,7 +28,8 @@ class IngredientsViewModel(private val dataManager: DataManager): BaseViewModel(
     * Making sure the entered ingredients string is valid
     * */
     fun validateIngredientsStr(ingredientsStr: String): Boolean {
-        return !ingredientsStr.trim().isEmpty()
+        // A valid input would consist of 3 or more components (quantity, unit, food name)
+        return !ingredientsStr.trim().isEmpty() && ingredientsStr.trim().split(" ").size > 2
     }
 
     /*
@@ -37,7 +38,8 @@ class IngredientsViewModel(private val dataManager: DataManager): BaseViewModel(
     private fun parseIngredientsStr(ingredientsStr: String): List<String> {
         val ingredients = mutableListOf<String>()
         for (ingr in ingredientsStr.split("\n"))
-            ingredients.add(ingr)
+            if(!ingr.isEmpty())
+                ingredients.add(ingr)
 
         return ingredients
     }

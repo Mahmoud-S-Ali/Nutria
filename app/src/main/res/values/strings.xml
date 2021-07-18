@@ -9,4 +9,8 @@
     <string name="error_general">Error</string>
     <string name="error_unauthorized">UnAuthroized Request</string>
     <string name="error_deformed_recipe">Please make sure to add ingredients properly</string>
+    <string name="total">Total</string>
+    <string name="calories">Calories</string>
+    <string name="weight">Weight</string>
+    <string name="total_summary">Total Summary</string>
 </resources>
