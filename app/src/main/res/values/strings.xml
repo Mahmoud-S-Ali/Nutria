@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Nutria</string>
+    <string name="add_ingredients_message">Please add ingredients\nin separate lines</string>
+    <string name="analyze">Analyze</string>
+    <string name="ingredients_hint">1 cup rice,\n10 oz chickpeas</string>
+    <string name="error_title">Error</string>
+    <string name="ok">Ok</string>
+    <string name="error_connection">No connection found</string>
+    <string name="error_general">Error</string>
+    <string name="error_unauthorized">UnAuthroized Request</string>
+    <string name="error_deformed_recipe">Please make sure to add ingredients properly</string>
 </resources>

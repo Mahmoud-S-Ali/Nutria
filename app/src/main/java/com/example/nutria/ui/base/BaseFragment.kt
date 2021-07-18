@@ -22,11 +22,11 @@ import com.example.nutria.di.module.FragmentModule
 import com.example.nutria.ui.base.BaseViewModel
 import javax.inject.Inject
 
-abstract class BaseFragment<T : ViewDataBinding?, V : BaseViewModel<*>?>() : Fragment() {
+abstract class BaseFragment<T : ViewDataBinding?, V : BaseViewModel?> : Fragment() {
 
     private var activity: BaseActivity<T>? = null
     private var rootView: View? = null
-    private var viewDataBinding: T? = null
+    protected var viewDataBinding: T? = null
 
     @set:Inject
     protected var viewModel: V? = null
@@ -58,7 +58,7 @@ abstract class BaseFragment<T : ViewDataBinding?, V : BaseViewModel<*>?>() : Fra
     abstract fun getViewModelClass():Class<V>
 
     @MainThread
-    private fun <N: BaseViewModel<*>> setupDataStateObserver(viewModel: N?){
+    private fun <N: BaseViewModel> setupDataStateObserver(viewModel: N?){
         viewModel?.dataState?.observe(this, Observer { result ->
             if(result == StateCodes.LOADING)
                 showLoading()

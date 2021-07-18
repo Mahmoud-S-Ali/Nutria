@@ -7,6 +7,9 @@ enum class StateCodes(var code: Int) {
     NETWORK_ERROR(4),
     FAILED(5),
     UNAUTHORIZED(6),
+    INVALID_RECIPE(7),
+    UNPROCESSABLE_ENTITY(8),
+    NOT_FOUND(9),
     GENERAL_ERROR(1000);
 
     companion object {
