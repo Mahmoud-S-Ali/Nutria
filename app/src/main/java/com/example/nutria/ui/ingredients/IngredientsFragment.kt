@@ -23,6 +23,13 @@ import java.lang.Error
 
 class IngredientsFragment : BaseFragment<FragmentIngredientsBinding, IngredientsViewModel>() {
 
+    /*
+    * When screen is rotated in summary screen, ingredient details is getting observed after
+    * pressing back button at Summary screen which leads to calling navToSummary again,
+    * so to workaround this we use this boolean
+    * */
+    private var callInProgress: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,8 +52,11 @@ class IngredientsFragment : BaseFragment<FragmentIngredientsBinding, Ingredients
             with(viewModel) {
                 if (!validateResult(ingredientDetails))
                     ErrorHandler.showAlertForError(StateCodes.UNPROCESSABLE_ENTITY, context)
-                else
+
+                else if (callInProgress) {
+                    callInProgress = false
                     navigateToSummaryFragment(ingredientDetails)
+                }
             }
         })
     }
@@ -69,6 +79,8 @@ class IngredientsFragment : BaseFragment<FragmentIngredientsBinding, Ingredients
 
     private fun addAnalyzeBtnClickListener() {
         viewDataBinding?.btnAnalyze?.setOnClickListener {
+            hideKeyboard()
+            callInProgress = true
             viewModel?.getIngredientsDetails(tie_ingredients?.text.toString())
         }
     }

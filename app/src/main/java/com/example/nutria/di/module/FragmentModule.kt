@@ -11,6 +11,7 @@ import com.example.nutria.data.model.api.IngredientParsedData
 import com.example.nutria.ui.ingredients.IngredientsViewModel
 import com.example.nutria.ui.summary.SummaryRecyclerAdapter
 import com.example.nutria.ui.summary.SummaryViewModel
+import com.example.nutria.ui.totalNutrients.TotalNutrientsViewModel
 import dagger.Module
 import dagger.Provides
 import java.util.*
@@ -45,6 +46,20 @@ class FragmentModule(fragment: BaseFragment<*, *>) {
         )
 
         return ViewModelProvider(fragment, factory).get(SummaryViewModel::class.java)
+    }
+
+    @Provides
+    fun provideTotalNutrientsViewModel(dataManager: DataManager): TotalNutrientsViewModel? {
+        val supplier: Supplier<TotalNutrientsViewModel> =
+            Supplier {
+                TotalNutrientsViewModel(dataManager)
+            }
+
+        val factory: ViewModelProviderFactory<TotalNutrientsViewModel> = ViewModelProviderFactory(
+            TotalNutrientsViewModel::class.java, supplier
+        )
+
+        return ViewModelProvider(fragment, factory).get(TotalNutrientsViewModel::class.java)
     }
 
     @Provides

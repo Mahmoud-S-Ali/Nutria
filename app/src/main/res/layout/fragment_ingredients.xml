@@ -26,27 +26,43 @@
                 android:paddingBottom="@dimen/_72sdp">
 
                 <TextView
-                    android:id="@+id/tv_app_title"
+                    android:id="@+id/tv_welcome_to"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_30sdp"
-                    android:text="@string/app_name"
-                    android:textSize="@dimen/_35ssp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:text="@string/welcome_to"
+                    android:textSize="@dimen/_22ssp"
+                    android:textColor="@color/grey_700"
                     android:textStyle="italic"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_app_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/app_name"
+                    android:textAllCaps="true"
+                    android:textColor="@color/green"
+
+                    android:textSize="@dimen/_28ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_welcome_to" />
+
+                <TextView
                     android:id="@+id/tv_plz_add_ingredients"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
                     android:gravity="center"
                     android:paddingLeft="@dimen/_16sdp"
                     android:paddingRight="@dimen/_16sdp"
                     android:text="@string/add_ingredients_message"
-                    android:textSize="@dimen/_20ssp"
+                    android:textSize="@dimen/_18ssp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_app_title" />

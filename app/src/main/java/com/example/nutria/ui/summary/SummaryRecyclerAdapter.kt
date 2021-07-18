@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import com.example.nutria.R
 import com.example.nutria.base.BaseRecyclerAdapter
 import com.example.nutria.data.model.api.Ingredient
-import com.example.nutria.data.model.api.IngredientParsedData
 import com.example.nutria.utils.Utils
 import kotlinx.android.synthetic.main.item_summary.view.*
 
@@ -35,12 +34,12 @@ class SummaryRecyclerAdapter(
             parsedData?.let {
                 // We can use StringBuilder here for better performance
                 itemView.tv_summary_title?.text =
-                    Utils.getTruncatedFloatStr(parsedData.quantity)+
-                            " " + parsedData.unit + " " + parsedData.name
+                    Utils.getTruncatedFloatStr(parsedData.quantity) +
+                            " " + (parsedData.unit ?: "") + " " + parsedData.name
 
                 with(parsedData.nutrients?.energyData) {
                     itemView.tv_calories_value?.text =
-                        Utils.getTruncatedFloatStr(this?.energyQuantity ?: 0f) + " " + this?.energyUnit
+                        Utils.getTruncatedFloatStr(this?.quantity ?: 0f) + " " + this?.unit
                 }
 
                 itemView.tv_weight_value.text = Utils.getTruncatedFloatStr(parsedData.weight) + " " + "g"

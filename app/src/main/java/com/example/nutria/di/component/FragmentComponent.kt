@@ -5,6 +5,7 @@ import com.example.nutria.di.scope.FragmentScope
 import com.example.nutria.ui.ingredients.IngredientsFragment
 import com.example.nutria.ui.main.MainActivity
 import com.example.nutria.ui.summary.SummaryFragment
+import com.example.nutria.ui.totalNutrients.TotalNutrientsFragment
 import dagger.Component
 
 @FragmentScope
@@ -14,4 +15,6 @@ interface FragmentComponent {
     fun inject(fragment: IngredientsFragment?)
 
     fun inject(fragment: SummaryFragment?)
+
+    fun inject(fragment: TotalNutrientsFragment?)
 }

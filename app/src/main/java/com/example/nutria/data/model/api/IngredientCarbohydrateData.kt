@@ -5,8 +5,8 @@ import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class IngredientEnergyData(
+class IngredientCarbohydrateData(
     @Json(name = "quantity") var quantity: Float = 0f,
-    @Json(name = "unit") var unit: String? = null,
-): Parcelable {
+    @Json(name = "unit") var unit: String? = null
+) : Parcelable {
 }

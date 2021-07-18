@@ -9,16 +9,36 @@
         android:id="@+id/ingredientsFragment"
         android:name="com.example.nutria.ui.ingredients.IngredientsFragment"
         android:label="IngredientsFragment"
-        tools:layout="@layout/fragment_ingredients" >
+        tools:layout="@layout/fragment_ingredients">
         <action
             android:id="@+id/action_ingredientsFragment_to_summaryFragment"
-            app:destination="@id/summaryFragment" />
+            app:destination="@id/summaryFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
     </fragment>
     <fragment
         android:id="@+id/summaryFragment"
-        tools:layout="@layout/fragment_summary"
         android:name="com.example.nutria.ui.summary.SummaryFragment"
-        android:label="SummaryFragment" >
+        android:label="SummaryFragment"
+        tools:layout="@layout/fragment_summary">
+        <argument
+            android:name="ingredientsDetails"
+            app:argType="com.example.nutria.data.model.api.IngredientDetailsResponse" />
+        <action
+            android:id="@+id/action_summaryFragment_to_totalNutrientsFragment"
+            app:destination="@id/totalNutrientsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/totalNutrientsFragment"
+        android:name="com.example.nutria.ui.totalNutrients.TotalNutrientsFragment"
+        android:label="TotalNutrientsFragment"
+        tools:layout="@layout/fragment_total_nutrients">
         <argument
             android:name="ingredientsDetails"
             app:argType="com.example.nutria.data.model.api.IngredientDetailsResponse" />

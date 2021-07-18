@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutria.BR
 import com.example.nutria.R
 import com.example.nutria.base.BaseFragment
+import com.example.nutria.data.model.api.IngredientDetailsResponse
 import com.example.nutria.data.model.api.IngredientParsedData
 import com.example.nutria.databinding.FragmentSummaryBinding
 import com.example.nutria.di.component.FragmentComponent
+import com.example.nutria.ui.ingredients.IngredientsFragmentDirections
+import kotlinx.android.synthetic.main.fragment_ingredients.*
 import javax.inject.Inject
 
 class SummaryFragment : BaseFragment<FragmentSummaryBinding, SummaryViewModel>() {
@@ -62,9 +66,22 @@ class SummaryFragment : BaseFragment<FragmentSummaryBinding, SummaryViewModel>()
             this?.adapter = summaryAdapter
             this?.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
+
+        addTotalSummaryBtnClickListener()
     }
 
     private fun loadData() {
         viewModel?.ingredientsDetails?.ingredients?.let { summaryAdapter?.notifyWithNewItems(it) }
+    }
+
+    private fun addTotalSummaryBtnClickListener() {
+        viewDataBinding?.btnSummary?.setOnClickListener {
+            viewModel?.ingredientsDetails?.let { ingrDetails -> navigateToTotalNutrientsFragment(ingrDetails) }
+        }
+    }
+
+    private fun navigateToTotalNutrientsFragment(ingredientsDetails: IngredientDetailsResponse) {
+        val action = SummaryFragmentDirections.actionSummaryFragmentToTotalNutrientsFragment(ingredientsDetails)
+        findNavController().navigate(action)
     }
 }

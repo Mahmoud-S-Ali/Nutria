@@ -6,9 +6,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class IngredientDetailsResponse(
-    @Json(name = "calories") var totalCalories: Int = 0,
+    @Json(name = "calories") var totalCalories: Float = 0f,
     @Json(name = "totalWeight") var totalWeight: Float = 0f,
-    @Json(name = "ingredients") var ingredients: List<Ingredient>? = null
+    @Json(name = "ingredients") var ingredients: List<Ingredient>? = null,
+    @Json(name = "totalNutrients") var totalNutrients: IngredientTotalNutrients? = null
 ): Parcelable {
 
 }
